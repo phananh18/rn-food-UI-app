@@ -5,7 +5,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import CategoriesData from '../assets/data/CategoriesData'
 import PopularData from '../assets/data/PopularData'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 const HomeScreen = () => {
     return (
         <ScrollView>
@@ -48,7 +48,9 @@ const HomeScreen = () => {
                                         backgroundColor: item.selected ? Colors.primary : Colors.white,
                                     }]}>
                                         <Image source={item.image} style={styles.categoryItemImage} />
+
                                         <Text style={styles.categoryItemText}>{item.title}</Text>
+
                                         <View style={[styles.categorySelectWrapper, {
                                             backgroundColor: item.selected ? Colors.white : Colors.secondary
                                         }]}>
@@ -67,47 +69,57 @@ const HomeScreen = () => {
                 {/* Popular */}
                 <View style={styles.popularWrapper}>
                     <Text style={styles.popularTitle}>Popular</Text>
-                    {/** use map func when there is a lot of data
-                     * {PopularData.map((item) => {
-                        return (
-                            <View style={styles.popularCardWrapper}>
-                                <View style={styles.popularTopWrapper}>
-                                    <FontAwesome5
-                                        name='crown'
-                                        size={12}
-                                        color={Colors.primary} />
-                                    <Text style={styles.popularTopText}>top of the week</Text>
-                                </View>
-                                <View style={styles.popularTitleWrapper}>
-                                    <Text>{item.title}</Text>
-                                    <Text>Weight: {item.weight}</Text>
-                                </View>
-                            </View>
-                        )
-                    })}
-                     */}
-                     {/*  use flatlist when there is a lot of data  */}
-                    <View style={{marginTop:10}}>
+                    <View style={{ marginTop: 10 }}>
                         <FlatList
                             data={PopularData}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => {
                                 return (
-                                    <View style={styles.popularCardWrapper}>
-                                        <View style={styles.popularTopWrapper}>
-                                            <FontAwesome5
-                                                name='crown'
-                                                size={12}
-                                                color={Colors.primary} />
-                                            <Text style={styles.popularTopText}>top of the week</Text>
+                                    <View style={[styles.popularCardWrapper,
+                                    {
+                                        marginTop: item.id == 1 ? 10 : 20,
+                                    }
+                                    ]}>
+                                        <View>
+                                            <View style={styles.popularTopWrapper}>
+                                                <FontAwesome5
+                                                    name='crown'
+                                                    size={12}
+                                                    color={Colors.primary} />
+                                                <Text style={styles.popularTopText}>top of the week</Text>
+                                            </View>
+
+                                            <View style={styles.popularTitleWrapper}>
+                                                <Text style={styles.popularTitlesTitle}>{item.title}</Text>
+                                                <Text style={styles.popularTitlesWeight}>Weight: {item.weight}</Text>
+                                            </View>
+
+                                            <View style={styles.popularCardBottom}>
+                                                <View style={styles.addPizzaButton}>
+                                                    <Feather name='plus' size={15} />
+                                                </View>
+
+                                                <View style={styles.ratingWrapper}>
+                                                    <MaterialCommunityIcons name='star' size={15} />
+                                                    <Text
+                                                        style={{
+                                                            marginLeft: 5,
+                                                            fontSize: 15,
+                                                            fontWeight: 'bold'
+                                                        }}>
+                                                        {item.rating}
+                                                    </Text>
+                                                </View>
+                                            </View>
                                         </View>
-                                        <View style={styles.popularTitleWrapper}>
-                                            <Text style={styles.popularTitlesTitle}>{item.title}</Text>
-                                            <Text style={styles.popularTitlesWeight}>Weight: {item.weight}</Text>
+
+                                        <View style={styles.popularCardRight}>
+                                            <Image source={item.image} style={styles.popularCardImage} />
                                         </View>
                                     </View>
                                 )
-                            }}
+                            }
+                            }
                         />
                     </View>
 
@@ -213,7 +225,7 @@ const styles = StyleSheet.create({
     },
     catergorySelectIcon: {
         alignSelf: 'center',
-        color:Colors.black,
+        color: Colors.black,
     },
     popularWrapper: {
         paddingHorizontal: 20,
@@ -227,7 +239,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white,
         borderRadius: 25,
         marginTop: 10,
-        paddingLeft:20,
+        paddingLeft: 20,
+
     },
     popularTopWrapper: {
         flexDirection: 'row',
@@ -241,14 +254,40 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     popularTitleWrapper: {
-        marginTop:20
+        marginTop: 20,
     },
     popularTitlesTitle: {
-        fontSize:14,
-        fontWeight:'bold',
-        fontFamily:'Montserrat-SemiBold',
+        fontSize: 14,
+        fontWeight: 'bold',
+        fontFamily: 'Montserrat-SemiBold',
     },
     popularTitlesWeight: {
-        color:Colors.textLight
+        color: Colors.textLight,
+        fontSize: 12,
+    },
+    popularCardBottom: {
+        flexDirection: 'row',
+        marginLeft: -20,
+        marginTop: 10,
+        alignItems: 'center',
+    },
+    addPizzaButton: {
+        backgroundColor: Colors.primary,
+        borderTopRightRadius: 25,
+        borderBottomLeftRadius: 25,
+        paddingVertical: 20,
+        paddingHorizontal: 40,
+    },
+    ratingWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 20,
+    },
+    popularCardRight: {
+        
+    },
+    popularCardImage: {
+        width: 210,
+        height: 125,
     },
 })
