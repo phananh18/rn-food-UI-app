@@ -12,7 +12,13 @@ const CategoriesData=[
         selected:false,
     },
     {
-        id:1,
+        id:3,
+        image:require('../images/wine-icon.png'),
+        title:'Alcoholic Drinks',
+        selected:false,
+    },
+    {
+        id:4,
         image:require('../images/soda-icon.png'),
         title:'Soft Drinks',
         selected:false,

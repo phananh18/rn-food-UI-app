@@ -1,87 +1,121 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native'
 import Colors from '../assets/colors/Colors'
 import Feather from 'react-native-vector-icons/Feather'
 import CategoriesData from '../assets/data/CategoriesData'
 import PopularData from '../assets/data/PopularData'
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 const HomeScreen = () => {
     return (
-        <View style={styles.container}>
-            {/* Header */}
-            <View style={styles.headerWrapper}>
-                <Image
-                    style={styles.profileImage}
-                    source={require('../assets/images/profile.png')}
-                />
-                {/* Icon */}
-                <Feather name='menu' size={24} />
-            </View>
-
-            {/* Titles */}
-            <View style={styles.titleWrapper}>
-                <Text style={styles.titleSubtitle}>Food</Text>
-                <Text style={styles.titlesTitle}>Delivery</Text>
-            </View>
-
-            {/* Search */}
-            <View style={styles.searchWrapper}>
-                <Feather name='search' size={16} />
-                <View style={styles.search}>
-                    <Text style={styles.searchText}>Search...</Text>
-                </View>
-            </View>
-
-            {/* Categories */}
-            <View style={styles.categoriesWrapper}>
-                <Text style={styles.categoriesTitle}>Categories</Text>
-                <View style={styles.categoriesListWrapper}>
-                    <FlatList
-                        horizontal={true}
-                        data={CategoriesData}
-                        keyExtractor={item => item.id}
-                        renderItem={({ item }) => {
-                            return (
-                                <View style={[styles.categoryItemWrapper, {
-                                    backgroundColor: item.selected ? Colors.primary : Colors.white,
-                                }]}>
-                                    <Image source={item.image} style={styles.categoryItemImage} />
-                                    <Text style={styles.categoryItemText}>{item.title}</Text>
-                                    <View style={[styles.categorySelectWrapper, {
-                                        backgroundColor: item.selected ? Colors.white : Colors.secondary
-                                    }]}>
-                                        <Feather
-                                            name='chevron-right'
-                                            size={8}
-                                            style={styles.catergorySelectIcon} />
-                                    </View>
-                                </View>
-                            )
-                        }}
+        <ScrollView>
+            <View style={styles.container}>
+                {/* Header */}
+                <View style={styles.headerWrapper}>
+                    <Image
+                        style={styles.profileImage}
+                        source={require('../assets/images/profile.png')}
                     />
+                    {/* Icon */}
+                    <Feather name='menu' size={24} />
                 </View>
-            </View>
 
-            {/* Popular */}
-            <View style={styles.popularWrapper}>
-                <Text style={styles.popularTitle}>Popular</Text>
-                <View style={styles.popularListWrapper}>
-                        <FlatList 
-                            data={PopularData}
-                            keyExtractor={item=>item.id}
-                            renderItem={({item})=>{
-                                return(
-                                    <View>
-                                        <Text>{item.title}</Text>
+                {/* Titles */}
+                <View style={styles.titleWrapper}>
+                    <Text style={styles.titleSubtitle}>Food</Text>
+                    <Text style={styles.titlesTitle}>Delivery</Text>
+                </View>
+
+                {/* Search */}
+                <View style={styles.searchWrapper}>
+                    <Feather name='search' size={16} />
+                    <View style={styles.search}>
+                        <Text style={styles.searchText}>Search...</Text>
+                    </View>
+                </View>
+
+                {/* Categories */}
+                <View style={styles.categoriesWrapper}>
+                    <Text style={styles.categoriesTitle}>Categories</Text>
+                    <View style={styles.categoriesListWrapper}>
+                        <FlatList
+                            horizontal={true}
+                            data={CategoriesData}
+                            keyExtractor={item => item.id}
+                            renderItem={({ item }) => {
+                                return (
+                                    <View style={[styles.categoryItemWrapper, {
+                                        backgroundColor: item.selected ? Colors.primary : Colors.white,
+                                    }]}>
+                                        <Image source={item.image} style={styles.categoryItemImage} />
+                                        <Text style={styles.categoryItemText}>{item.title}</Text>
+                                        <View style={[styles.categorySelectWrapper, {
+                                            backgroundColor: item.selected ? Colors.white : Colors.secondary
+                                        }]}>
+                                            <Feather
+                                                name='chevron-right'
+                                                size={20}
+                                                style={styles.catergorySelectIcon} />
+                                        </View>
                                     </View>
                                 )
                             }}
                         />
+                    </View>
+                </View>
+
+                {/* Popular */}
+                <View style={styles.popularWrapper}>
+                    <Text style={styles.popularTitle}>Popular</Text>
+                    {/** use map func when there is a lot of data
+                     * {PopularData.map((item) => {
+                        return (
+                            <View style={styles.popularCardWrapper}>
+                                <View style={styles.popularTopWrapper}>
+                                    <FontAwesome5
+                                        name='crown'
+                                        size={12}
+                                        color={Colors.primary} />
+                                    <Text style={styles.popularTopText}>top of the week</Text>
+                                </View>
+                                <View style={styles.popularTitleWrapper}>
+                                    <Text>{item.title}</Text>
+                                    <Text>Weight: {item.weight}</Text>
+                                </View>
+                            </View>
+                        )
+                    })}
+                     */}
+                     {/*  use flatlist when there is a lot of data  */}
+                    <View style={{marginTop:10}}>
+                        <FlatList
+                            data={PopularData}
+                            keyExtractor={item => item.id}
+                            renderItem={({ item }) => {
+                                return (
+                                    <View style={styles.popularCardWrapper}>
+                                        <View style={styles.popularTopWrapper}>
+                                            <FontAwesome5
+                                                name='crown'
+                                                size={12}
+                                                color={Colors.primary} />
+                                            <Text style={styles.popularTopText}>top of the week</Text>
+                                        </View>
+                                        <View style={styles.popularTitleWrapper}>
+                                            <Text style={styles.popularTitlesTitle}>{item.title}</Text>
+                                            <Text style={styles.popularTitlesWeight}>Weight: {item.weight}</Text>
+                                        </View>
+                                    </View>
+                                )
+                            }}
+                        />
+                    </View>
+
+
                 </View>
             </View>
+        </ScrollView>
 
-        </View>
     )
 }
 
@@ -116,7 +150,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         fontSize: 32,
         color: Colors.textDark,
-        fontWeight:'bold',
+        fontWeight: 'bold',
     },
     searchWrapper: {
         marginTop: 36,
@@ -143,7 +177,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         fontSize: 16,
         color: Colors.textDark,
-        fontWeight:'bold',
+        fontWeight: 'bold',
     },
     categoriesListWrapper: {
         paddingTop: 15,
@@ -166,6 +200,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         fontSize: 14,
         marginTop: 10,
+        fontWeight: 'bold',
     },
     categorySelectWrapper: {
         alignSelf: 'center',
@@ -178,13 +213,42 @@ const styles = StyleSheet.create({
     },
     catergorySelectIcon: {
         alignSelf: 'center',
+        color:Colors.black,
     },
-    popularWrapper:{
-        paddingHorizontal:20,
+    popularWrapper: {
+        paddingHorizontal: 20,
     },
-    popularTitle:{
-        fontFamily:'Montserrat-Bold',
-        fontSize:16,
+    popularTitle: {
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    popularCardWrapper: {
+        backgroundColor: Colors.white,
+        borderRadius: 25,
+        marginTop: 10,
+        paddingLeft:20,
+    },
+    popularTopWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingTop: 20,
+    },
+    popularTopText: {
+        fontSize: 14,
+        fontFamily: 'Montserrat-SemiBold',
+        fontWeight: 'bold',
+        marginLeft: 10,
+    },
+    popularTitleWrapper: {
+        marginTop:20
+    },
+    popularTitlesTitle: {
+        fontSize:14,
         fontWeight:'bold',
-    }
+        fontFamily:'Montserrat-SemiBold',
+    },
+    popularTitlesWeight: {
+        color:Colors.textLight
+    },
 })
