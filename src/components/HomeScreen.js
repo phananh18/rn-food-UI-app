@@ -1,22 +1,24 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, FlatList, ScrollView, TouchableOpacity } from 'react-native'
 import Colors from '../assets/colors/Colors'
 import Feather from 'react-native-vector-icons/Feather'
 import CategoriesData from '../assets/data/CategoriesData'
 import PopularData from '../assets/data/PopularData'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     return (
-        <ScrollView>
+        <ScrollView
+            contentInsetAdjustmentBehavior='automatic'
+            showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
+
                 {/* Header */}
                 <View style={styles.headerWrapper}>
                     <Image
                         style={styles.profileImage}
                         source={require('../assets/images/profile.png')}
                     />
-                    {/* Icon */}
                     <Feather name='menu' size={24} />
                 </View>
 
@@ -39,6 +41,7 @@ const HomeScreen = () => {
                     <Text style={styles.categoriesTitle}>Categories</Text>
                     <View style={styles.categoriesListWrapper}>
                         <FlatList
+                            showsHorizontalScrollIndicator={false}
                             horizontal={true}
                             data={CategoriesData}
                             keyExtractor={item => item.id}
@@ -69,65 +72,61 @@ const HomeScreen = () => {
                 {/* Popular */}
                 <View style={styles.popularWrapper}>
                     <Text style={styles.popularTitle}>Popular</Text>
+
                     <View style={{ marginTop: 10 }}>
                         <FlatList
                             data={PopularData}
                             keyExtractor={item => item.id}
                             renderItem={({ item }) => {
                                 return (
-                                    <View style={[styles.popularCardWrapper,
-                                    {
-                                        marginTop: item.id == 1 ? 10 : 20,
-                                    }
-                                    ]}>
-                                        <View>
-                                            <View style={styles.popularTopWrapper}>
-                                                <FontAwesome5
-                                                    name='crown'
-                                                    size={12}
-                                                    color={Colors.primary} />
-                                                <Text style={styles.popularTopText}>top of the week</Text>
-                                            </View>
-
-                                            <View style={styles.popularTitleWrapper}>
-                                                <Text style={styles.popularTitlesTitle}>{item.title}</Text>
-                                                <Text style={styles.popularTitlesWeight}>Weight: {item.weight}</Text>
-                                            </View>
-
-                                            <View style={styles.popularCardBottom}>
-                                                <View style={styles.addPizzaButton}>
-                                                    <Feather name='plus' size={15} />
+                                    <TouchableOpacity onPress={()=>navigation.navigate('Detail',{item:item})}>
+                                        <View style={[styles.popularCardWrapper,{marginTop: item.id == 1 ? 10 : 20,}]}>
+                                            <View>
+                                                <View style={styles.popularTopWrapper}>
+                                                    <FontAwesome5
+                                                        name='crown'
+                                                        size={12}
+                                                        color={Colors.primary} />
+                                                    <Text style={styles.popularTopText}>top of the week</Text>
                                                 </View>
 
-                                                <View style={styles.ratingWrapper}>
-                                                    <MaterialCommunityIcons name='star' size={15} />
-                                                    <Text
-                                                        style={{
-                                                            marginLeft: 5,
-                                                            fontSize: 15,
-                                                            fontWeight: 'bold'
-                                                        }}>
-                                                        {item.rating}
-                                                    </Text>
+                                                <View style={styles.popularTitleWrapper}>
+                                                    <Text style={styles.popularTitlesTitle}>{item.title}</Text>
+                                                    <Text style={styles.popularTitlesWeight}>Weight: {item.weight}</Text>
+                                                </View>
+
+                                                <View style={styles.popularCardBottom}>
+                                                    <View style={styles.addPizzaButton}>
+                                                        <Feather name='plus' size={15} />
+                                                    </View>
+
+                                                    <View style={styles.ratingWrapper}>
+                                                        <MaterialCommunityIcons name='star' size={15} />
+                                                        <Text
+                                                            style={{
+                                                                marginLeft: 5,
+                                                                fontSize: 15,
+                                                                fontWeight: 'bold'
+                                                            }}>
+                                                            {item.rating}
+                                                        </Text>
+                                                    </View>
                                                 </View>
                                             </View>
-                                        </View>
 
-                                        <View style={styles.popularCardRight}>
-                                            <Image source={item.image} style={styles.popularCardImage} />
+                                            <View style={styles.popularCardRight}>
+                                                <Image source={item.image} style={styles.popularCardImage} />
+                                            </View>
                                         </View>
-                                    </View>
+                                    </TouchableOpacity>
                                 )
-                            }
-                            }
+                            }}
                         />
                     </View>
-
-
                 </View>
+
             </View>
         </ScrollView>
-
     )
 }
 
@@ -240,7 +239,6 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginTop: 10,
         paddingLeft: 20,
-
     },
     popularTopWrapper: {
         flexDirection: 'row',
@@ -284,7 +282,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     popularCardRight: {
-        
+        flexDirection: 'row'
     },
     popularCardImage: {
         width: 210,
