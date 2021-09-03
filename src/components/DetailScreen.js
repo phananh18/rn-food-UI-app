@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
         marginHorizontal:20,
         flexDirection:'row',
         justifyContent:'center',
+        alignItems:'center',
     },
     orderText:{
         fontWeight:'bold',
