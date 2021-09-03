@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
+        fontFamily:'Montserrat-Bold',
         width: '50%',
     },
     priceWrapper: {
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 32,
         color: Colors.price,
-        fontWeight: 'bold'
+        fontFamily:'Montserrat-SemiBold',
     },
     infoWrapper: {
         flexDirection: 'row',
@@ -154,11 +154,12 @@ const styles = StyleSheet.create({
     infoItemTitle: {
         fontSize: 14,
         color: Colors.textLight,
+        fontFamily:'Montserrat-Medium',
     },
     infoItemText: {
         fontSize: 16,
         color: Colors.textDark,
-        fontWeight: 'bold'
+        fontFamily:'Montserrat-SemiBold',
     },
     infoImage: {
         resizeMode: 'contain',
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
     ingredientsTitle: {
         paddingHorizontal:20,
         fontSize: 16,
-        fontWeight: 'bold'
+        fontFamily:'Montserrat-Bold',
     },
     ingredientsListWrapper: {
         paddingVertical:20,
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     orderText:{
-        fontWeight:'bold',
+        fontFamily:'Montserrat-Bold',
         fontSize:16,
     }
 })

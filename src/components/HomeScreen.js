@@ -106,7 +106,7 @@ const HomeScreen = ({ navigation }) => {
                                                             style={{
                                                                 marginLeft: 5,
                                                                 fontSize: 15,
-                                                                fontWeight: 'bold'
+                                                                fontFamily:'Montserrat-SemiBold'
                                                             }}>
                                                             {item.rating}
                                                         </Text>
@@ -161,7 +161,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         fontSize: 32,
         color: Colors.textDark,
-        fontWeight: 'bold',
     },
     searchWrapper: {
         marginTop: 36,
@@ -188,7 +187,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         fontSize: 16,
         color: Colors.textDark,
-        fontWeight: 'bold',
     },
     categoriesListWrapper: {
         paddingTop: 15,
@@ -211,7 +209,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         fontSize: 14,
         marginTop: 10,
-        fontWeight: 'bold',
     },
     categorySelectWrapper: {
         alignSelf: 'center',
@@ -232,7 +229,6 @@ const styles = StyleSheet.create({
     popularTitle: {
         fontFamily: 'Montserrat-Bold',
         fontSize: 16,
-        fontWeight: 'bold',
     },
     popularCardWrapper: {
         borderRadius: 25,
@@ -256,7 +252,6 @@ const styles = StyleSheet.create({
     popularTopText: {
         fontSize: 14,
         fontFamily: 'Montserrat-SemiBold',
-        fontWeight: 'bold',
         marginLeft: 10,
     },
     popularTitleWrapper: {
@@ -264,12 +259,12 @@ const styles = StyleSheet.create({
     },
     popularTitlesTitle: {
         fontSize: 14,
-        fontWeight: 'bold',
         fontFamily: 'Montserrat-SemiBold',
     },
     popularTitlesWeight: {
         color: Colors.textLight,
         fontSize: 12,
+        fontFamily:'Monteserrat-Medium'
     },
     popularCardBottom: {
         flexDirection: 'row',
