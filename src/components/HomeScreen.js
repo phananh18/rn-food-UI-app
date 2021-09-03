@@ -81,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
                                 return (
                                     <TouchableOpacity onPress={()=>navigation.navigate('Detail',{item:item})}>
                                         <View style={[styles.popularCardWrapper,{marginTop: item.id == 1 ? 10 : 20,}]}>
-                                            <View>
+                                            <View style={styles.popularCardLeft}>
                                                 <View style={styles.popularTopWrapper}>
                                                     <FontAwesome5
                                                         name='crown'
@@ -235,10 +235,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     popularCardWrapper: {
-        backgroundColor: Colors.white,
         borderRadius: 25,
-        marginTop: 10,
-        paddingLeft: 20,
+        paddingHorizontal:20,
+        flexDirection:'row',
+        backgroundColor: Colors.white,
+        overflow:'hidden',
+        shadowColor:Colors.black,
+        shadowOffset:{
+            width:0,
+            height:4,
+        },
+        shadowOpacity:0.05,
+        shadowRadius:10,
     },
     popularTopWrapper: {
         flexDirection: 'row',
@@ -281,11 +289,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 20,
     },
-    popularCardRight: {
-        flexDirection: 'row'
+    popularCardRight:{
+        marginTop:20,
+        paddingHorizontal:30,
     },
     popularCardImage: {
         width: 210,
         height: 125,
+        resizeMode:'contain', 
     },
 })
