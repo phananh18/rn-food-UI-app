@@ -1,8 +1,8 @@
 # rn-food-UI-app
 
 <div>
-  <img height="400px" src="https://res.cloudinary.com/tuananh18/image/upload/v1631774005/jufn4hut3abqz2f48xk5.png" />
-  <img height="400px" src="https://res.cloudinary.com/tuananh18/image/upload/v1631774057/uyvsk2eyg5vabuizyxan.png" />
+  <img height="700px" src="https://res.cloudinary.com/tuananh18/image/upload/v1631775224/lfnzy2odi9wdpjo6ysnb.png" />
+  <img height="700px" src="https://res.cloudinary.com/tuananh18/image/upload/v1631775309/rwhawexii5knke8chsax.png" />
 </div>
 
 
